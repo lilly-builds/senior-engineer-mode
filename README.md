@@ -1,9 +1,11 @@
 # Senior Engineer Mode
 
-**Make your AI coding agent work like a senior engineer — not a lazy, hallucinating junior.**
+**Make your AI coding agent work like a senior engineer, not a lazy, hallucinating junior.**
 
-*A system for being thorough — scope → build → verify → review → ship — with automatic hooks that
-stop hidden errors and "done" when it isn't. Built so you can rip and run.*
+It gives your agents a system for being thorough — scope → build → verify → review → ship — that
+results in higher-quality builds. And it puts up real boundaries: automatic hooks that stop two
+things cold — errors swept under the rug, and "done" when it isn't. Built so you can drop your
+vision, then let the agents rip and run.
 
 ---
 
