@@ -1,6 +1,9 @@
 # Senior Engineer Mode
 
-**Make your AI coding assistant act like a careful senior engineer — instead of a fast, sloppy junior.**
+**Make your AI coding agent work like a senior engineer — not a lazy, hallucinating junior.**
+
+*A system for being thorough — scope → build → verify → review → ship — with automatic hooks that
+stop hidden errors and "done" when it isn't. Built so you can rip and run.*
 
 ---
 
