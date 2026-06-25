@@ -1,0 +1,5 @@
+{
+  "_comment": "Optional per-project tuning for senior-engineer-mode. Copy this file to your repo root as '.senior-mode.json' and edit. Both keys are optional; the values below are the defaults.",
+  "enabled": true,
+  "block_on_tests": false
+}

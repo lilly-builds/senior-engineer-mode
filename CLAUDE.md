@@ -19,16 +19,20 @@ A senior-engineering workflow for coding: a small rules file, three automatic gu
 1. This repo folder is the **source**. Note its absolute path — call it `REPO` (run `pwd`).
 2. The install **target** is the user's Claude Code config folder: `~/.claude` (expand `~` to the
    real home path).
-3. **Back up** settings: if `~/.claude/settings.json` exists, copy it to `~/.claude/settings.json.bak`
+3. **Check for `jq`** (run `command -v jq`). The guardrails parse JSON with `jq`; without it they
+   **fail open and silently do nothing**. If it's missing, warn the user plainly and tell them to
+   install it (`brew install jq` on macOS, or their package manager on Linux) for the guardrails to
+   actually work. You can still finish the install, but say it won't enforce until `jq` is present.
+4. **Back up** settings: if `~/.claude/settings.json` exists, copy it to `~/.claude/settings.json.bak`
    and tell the user.
-4. If `~/.claude/senior-engineer-mode/` already exists, tell the user it's already installed and ask
+5. If `~/.claude/senior-engineer-mode/` already exists, tell the user it's already installed and ask
    whether to update or stop.
 
 ## Steps
 
 ### 1 · Put the pack where Claude Code can find it
 - Copy from `REPO` into `~/.claude/senior-engineer-mode/`: `THE-SPINE.md`, `rules/`, `hooks/`,
-  `agents/`, `skills/`.
+  `agents/`, `skills/`, and `uninstall.sh` (so the user can cleanly reverse this later).
 - Make the guardrail scripts runnable: `chmod +x ~/.claude/senior-engineer-mode/hooks/*.sh`
 
 ### 2 · Load the rules in every session
@@ -71,9 +75,12 @@ A senior-engineering workflow for coding: a small rules file, three automatic gu
 ### 6 · Tell the user, in plain words
 - It's installed. They should **start a brand-new chat** in a coding project to see it (the guardrails
   load when a session starts).
-- Run the whole flow on a task with **`/lets-hack`**, or one step with `/scope` `/build` `/verify`
-  `/review` `/ship`.
+- Run the whole flow on a task with **`/lets-hack`**, or one step with `/scope` `/build` `/ship`.
+  (For REVIEW, use the `skeptic` agent or the built-in `/code-review`; VERIFY is the automatic
+  "done" gate.)
 - To turn it off in a project, add a file `.senior-mode.json` containing `{ "enabled": false }`.
+- To uninstall later, run `bash ~/.claude/senior-engineer-mode/uninstall.sh` — it surgically removes
+  only senior-mode's hooks, lines, links, and folder, backing up `settings.json` first.
 
 ## Your safety rules as the installer
 - **Never** overwrite `settings.json` or `CLAUDE.md` — merge or append.
