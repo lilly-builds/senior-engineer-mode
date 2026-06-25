@@ -1,0 +1,29 @@
+{
+  "_comment": "MERGE the contents of this 'hooks' object into your ~/.claude/settings.json hooks block. Do NOT overwrite the whole file. Replace $HOME with your absolute home path if your setup doesn't expand it. The agent install (read the repo CLAUDE.md) does this for you.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "$HOME/.claude/senior-engineer-mode/hooks/load-spine.sh" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "$HOME/.claude/senior-engineer-mode/hooks/block-suppressions.sh" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "$HOME/.claude/senior-engineer-mode/hooks/verify-before-done.sh" }
+        ]
+      }
+    ]
+  }
+}
